@@ -1,120 +1,105 @@
 # Bank Loan Risk Analysis Dashboard
 
-![Dashboard Preview](dashboard_preview.png)
+An interactive **Power BI** solution that delivers end-to-end risk analysis on a $435M+ loan portfolio. Designed for data-driven lending teams, this report combines high-level KPIs, exploratory visuals, and granular records to support strategic decision-making and operational transparency.
 
 ---
 
-## Project Overview
+## 📸 Dashboard Previews
 
-A comprehensive, interactive **Power BI** dashboard designed to analyze and assess risk factors in personal loan portfolios. By integrating business intelligence best practices and advanced data visualization techniques, this solution empowers stakeholders to make data-driven lending decisions.
+### Page 1: Summary  
+Executive overview of portfolio performance and risk segmentation.  
+![Summary Page](dashboard/Page1.png)
 
----
-
-## Key Features & Business Impact
-
-- **Risk Segmentation**  
-  Categorize loans by status (Fully Paid vs. Charged Off) to surface high-risk segments and prioritize mitigation strategies.
-
-- **Creditworthiness Assessment**  
-  Analyze debt-to-income ratios, credit history, and employment tenure to refine borrower credit profiles and enhance approval workflows.
-
-- **Performance Monitoring**  
-  Track interest rates, installment payments, and total repayments over time to identify trends and optimize pricing models.
-
-- **Demographic Insights**  
-  Visualize geographic distribution and employment sectors to inform targeted marketing and underwriting policies.
-
-- **Interactive Filters & KPIs**  
-  Drill down by state, loan grade, employment length, and homeownership status. Monitor key metrics such as default rate, average DTI, and total loan volume in real-time.
+- **High-Level KPIs:** Total applications, funded & received amounts, Avg. Interest Rate, Avg. DTI (Month-to-Date vs. Month-over-Month)  
+- **Risk Segmentation:** ‘Good’ vs. ‘Bad’ loan proportions with counts and amounts  
+- **Loan Status Table:** Breakdown by Fully Paid, Charged Off, Current  
 
 ---
 
-## Technical Summary
+### Page 2: Overview  
+In-depth trend and demographic analysis of funded amounts.  
+![Overview Page](dashboard/Page2.png)
+
+- **Time Series:** Monthly funded volume (Jan – Dec)  
+- **Geographic Heatmap:** State-level loan distribution  
+- **Borrower Profile:** Funding by employment length and homeownership  
+- **Purpose & Term:** Loan purpose breakdown and 36 vs. 60-month term comparison  
+
+---
+
+### Page 3: Details  
+Tabular view of individual loan records for drill-down and validation.  
+![Details Page](dashboard/Page3.png)
+
+- **Loan Metadata:** ID, issue date, purpose, grade/sub-grade  
+- **Financial Metrics:** Funded amount, received amount, installment, interest rate  
+- **Filterable Fields:** Loan status, borrower state, grade, homeownership  
+
+---
+
+## 🔑 Key Takeaways
+
+- **Default Risk Concentration:** 13.8% of loans charged off, predominantly in lower grades (C–E).  
+- **DTI & Income Insights:** Higher DTI (>20%) correlates with elevated default rates.  
+- **Seasonal Growth:** Funded amount rises steadily from $25M (Jan) to $54M (Dec).  
+- **Primary Use Cases:** Debt consolidation dominates, followed by credit cards and home improvement.  
+
+---
+
+## 🛠️ Technical Summary
 
 - **Platform:** Power BI Desktop  
-- **Data Preparation:** Power Query / Excel  
-- **Visual Types:** Bar & column charts, scatter plots, KPI cards, slicers  
-- **Data Source:** Anonymized loan application records
+- **Data Prep:** Power Query & Excel  
+- **Visuals:** KPI cards, bar/column charts, line charts, maps, donut charts, tables, slicers  
+- **Data Source:** Anonymized loan application dataset (~38.6K records)
 
 ---
 
-## Dataset Schema
-
-| Column            | Description                                    |
-|-------------------|------------------------------------------------|
-| `id`              | Unique loan identifier                         |
-| `address_st`      | Borrower’s U.S. state                          |
-| `emp_lengt`       | Employment duration (e.g., `< 1 year`, `10+`)  |
-| `emp_title`       | Job title                                      |
-| `grade`, `sub_grade` | Assigned risk grade (A–G)                  |
-| `home_own`        | Homeownership status (Rent, Mortgage, Own)     |
-| `loan_statu`      | Loan status (Fully Paid, Charged Off)          |
-| `loan_amo`        | Requested loan amount (USD)                    |
-| `annual_inc`      | Annual income (USD)                            |
-| `int_rate`        | Applied interest rate (%)                      |
-| `installmen`      | Monthly installment (USD)                      |
-| `dti`             | Debt-to-income ratio (%)                       |
-| `total_acc`       | Number of open credit accounts                 |
-| `total_payment`   | Total amount repaid to date (USD)              |
-
----
-
-## Repository Structure
+## 📂 Repository Structure
 
 ```
 
 loan-risk-analysis/
-├── Loan\_Risk\_Analysis.pbix    # Power BI dashboard file
-├── dashboard\_preview\.png      # Static preview image
-└── README.md                  # Project overview & instructions
+├── Loan\_Risk\_Analysis.pbix      # Full Power BI report
+├── dashboard\_Page1  # Page 1 preview
+├── dashboard\_Page2 # Page 2 preview
+├── dashboard\_Page3  # Page 3 preview
+└── README.md         # Project documentation
 
 ````
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-1. **Clone the repository**  
+1. **Clone repository**  
    ```bash
    git clone https://github.com/your-username/loan-risk-analysis-dashboard.git
    cd loan-risk-analysis
 ````
 
-2. **Open in Power BI Desktop**
-   Launch `Loan_Risk_Analysis.pbix`.
-3. **Interact & Customize**
-   Use built-in slicers and visuals to explore risk metrics, adjust filters, and export insights for reporting.
+2. **Open report**
+   Launch `Loan_Risk_Analysis.pbix` in Power BI Desktop.
+3. **Interact & Export**
+   Use slicers and drill-throughs to filter data; export visuals or data as needed.
 
 ---
 
-## Skills Demonstrated
+## 🎯 Skills Demonstrated
 
-* Data modeling & ETL with Power Query
-* Interactive dashboard design
+* Data modeling & ETL (Power Query)
+* Interactive dashboard design (Power BI)
 * Risk analysis & KPI development
-* Stakeholder-focused storytelling through data
+* Data storytelling for stakeholders
 
 ---
 
-## Next Steps
-
-* **Integrate additional data sources** (e.g., payment history, credit bureau)
-* **Automate data refresh** via Power BI Service / Azure Data Factory
-* **Extend reporting** with paginated/embedded visuals
-
----
-
-## Contact & Collaboration
-
-I welcome your feedback or collaboration inquiries:
+## 🤝 Get in Touch
 
 * **GitHub:** [your-username](https://github.com/Saif907)
 * **LinkedIn:** [Your Name](https://www.linkedin.com/in/saif-shaikh-527346251)
-* **Email:** [your.email@example.com](mailto:saif81868@fmail.com)
+* **Email:** [your.email@example.com](mailto:saif81868@gmail.com)
 
 ---
 
-*© 2025 Your Name. All rights reserved.*
 
-```
-```
