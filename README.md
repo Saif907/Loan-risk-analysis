@@ -1,6 +1,6 @@
-# Bank Loan Risk Analysis Dashboard
+# Bank Loan Risk Analysis & Default Prediction
 
-An interactive **Power BI** solution that delivers end-to-end risk analysis on a $435M+ loan portfolio. Designed for data-driven lending teams, this report combines high-level KPIs, exploratory visuals, and granular records to support strategic decision-making and operational transparency.
+An end-to-end **Power BI + Machine Learning** solution that delivers portfolio insights and predicts potential loan defaults. This project combines an interactive Power BI dashboard with an **XGBoost classification model** trained to identify high-risk borrowers, enabling data-driven decisions for lending teams.
 
 ---
 
@@ -10,78 +10,123 @@ An interactive **Power BI** solution that delivers end-to-end risk analysis on a
 Executive overview of portfolio performance and risk segmentation.  
 ![Summary Page](dashboard/Page1.png)
 
-- **High-Level KPIs:** Total applications, funded & received amounts, Avg. Interest Rate, Avg. DTI (Month-to-Date vs. Month-over-Month)  
-- **Risk Segmentation:** ‘Good’ vs. ‘Bad’ loan proportions with counts and amounts  
-- **Loan Status Table:** Breakdown by Fully Paid, Charged Off, Current  
-
----
-
 ### Page 2: Overview  
 In-depth trend and demographic analysis of funded amounts.  
 ![Overview Page](dashboard/Page2.png)
-
-- **Time Series:** Monthly funded volume (Jan – Dec)  
-- **Geographic Heatmap:** State-level loan distribution  
-- **Borrower Profile:** Funding by employment length and homeownership  
-- **Purpose & Term:** Loan purpose breakdown and 36 vs. 60-month term comparison  
-
----
 
 ### Page 3: Details  
 Tabular view of individual loan records for drill-down and validation.  
 ![Details Page](dashboard/Page3.png)
 
-- **Loan Metadata:** ID, issue date, purpose, grade/sub-grade  
-- **Financial Metrics:** Funded amount, received amount, installment, interest rate  
-- **Filterable Fields:** Loan status, borrower state, grade, homeownership  
+---
+
+## 🤖 Machine Learning Integration
+
+To complement the dashboard, an **XGBoost ML model** was built to predict customer default risk.
+
+- **Target Variable:** Loan default (Charged Off vs. Fully Paid)  
+- **Features Used:** Borrower income, DTI, loan grade, loan amount, interest rate, employment length, purpose, and more  
+- **Modeling Tools:** Python, scikit-learn, XGBoost
+
+### 📊 Model Evaluation
+
+**Confusion Matrix:**
+
+
+\[\[9466  178]
+\[ 213 1387]]
+
+
+- **True Negatives (TN):** 9466  
+- **False Positives (FP):** 178  
+- **False Negatives (FN):** 213  
+- **True Positives (TP):** 1387
+
+**Classification Report:**
+          precision    recall  f1-score   support
+       0       0.98      0.98      0.98      9644
+       1       0.89      0.87      0.88      1600
+
+accuracy                           0.97     11244
+
+
+macro avg       0.93      0.92      0.93     11244
+weighted avg       0.96      0.97      0.97     11244
+
+
+
+**Interpretation & Business Value**
+- **Overall accuracy: 97%** — the model predicts loan status with a high degree of correctness on the test set.  
+- **Class 1 (Default) performance:** precision 0.89 and recall 0.87 — strong at identifying actual defaults while keeping false alarms reasonably low.  
+- **Operational impact:** helps identify high-risk loans early, supports credit decisioning and collections prioritization, and can reduce expected loan losses when integrated into workflows.
+
+*(Optional)* Consider adding `notebook/feature_importance.png` (a bar chart of top predictors from XGBoost) to the repository for a quick visual of what drives model decisions.
 
 ---
 
 ## 🔑 Key Takeaways
 
-- **Default Risk Concentration:** 13.8% of loans charged off, predominantly in lower grades (C–E).  
-- **DTI & Income Insights:** Higher DTI (>20%) correlates with elevated default rates.  
-- **Seasonal Growth:** Funded amount rises steadily from $25M (Jan) to $54M (Dec).  
-- **Primary Use Cases:** Debt consolidation dominates, followed by credit cards and home improvement.  
+- **Default Risk Concentration:** 13.8% of loans charged off, concentrated in lower grades (C–E).  
+- **Top Predictors:** Borrower income, loan grade, and DTI are among the most important features for predicting defaults.  
+- **Behavioral Insight:** Higher DTI (>20%) correlates with elevated default rates.  
+- **Seasonality:** Funded amount rises through the year (e.g., ~$25M in Jan → ~$54M in Dec).  
+- **Primary Use Cases:** Debt consolidation dominates; secondary uses include credit card payoff and home improvement.
 
 ---
 
 ## 🛠️ Technical Summary
 
-- **Platform:** Power BI Desktop  
+- **Dashboard Platform:** Power BI Desktop  
 - **Data Prep:** Power Query & Excel  
-- **Visuals:** KPI cards, bar/column charts, line charts, maps, donut charts, tables, slicers  
-- **Data Source:** Anonymized loan application dataset (~38.6K records)
+- **ML Model:** XGBoost (Python)  
+- **Evaluation:** Train/test split, cross-validation, confusion matrix, precision/recall/F1, AUC-ROC (recommended)  
+- **Visuals in Dashboard:** KPI cards, bar/column charts, line charts, maps, donut charts, tables, slicers  
+- **Dataset:** Anonymized loan application dataset (~38.6K records)
 
 ---
 
 ## 📂 Repository Structure
 
-```
+
 
 loan-risk-analysis/
-├── Loan\_Risk\_Analysis.pbix      # Full Power BI report
-├── dashboard\_Page1  # Page 1 preview
-├── dashboard\_Page2 # Page 2 preview
-├── dashboard\_Page3  # Page 3 preview
-└── README.md         # Project documentation
+├── dashboard/
+│   ├── Loan\_Risk\_Analysis.pbix   # Power BI report
+│   ├── Page1.png                 # Dashboard preview - Summary
+│   ├── Page2.png                 # Dashboard preview - Overview
+│   └── Page3.png                 # Dashboard preview - Details
+│
+└── notebook/
+├── LoanRiskAnalysis.ipynb    # ML model training & evaluation (XGBoost)
+└── requirements.txt          # Python dependencies (recommended)
 
-````
 
----
+
+
 
 ## 🚀 Getting Started
 
-1. **Clone repository**  
-   bash
-   git clone https://github.com/your-username/loan-risk-analysis-dashboard.git
-   cd loan-risk-analysis
+### 1) Clone repository
+bash
+git clone https://github.com/Saif907/loan-risk-analysis.git
+cd loan-risk-analysis
 
 
-2. **Open report**
-   Launch `Loan_Risk_Analysis.pbix` in Power BI Desktop.
-3. **Interact & Export**
-   Use slicers and drill-throughs to filter data; export visuals or data as needed.
+### 2) Power BI Dashboard
+
+* Open `dashboard/Loan_Risk_Analysis.pbix` in Power BI Desktop to interact with the report.
+* Use slicers, drill-through and export features to explore data and export visuals.
+
+### 3) Machine Learning Notebook
+
+* Navigate to the `notebook/` folder and open `LoanRiskAnalysis.ipynb` in Jupyter or VS Code.
+* Install dependencies:
+
+```bash
+pip install -r notebook/requirements.txt
+```
+
+* Run the notebook to reproduce data preparation, model training, evaluation, and to export model artifacts / feature importance visualizations.
 
 ---
 
@@ -89,15 +134,25 @@ loan-risk-analysis/
 
 * Data modeling & ETL (Power Query)
 * Interactive dashboard design (Power BI)
-* Risk analysis & KPI development
+* Machine Learning model development & evaluation (XGBoost, scikit-learn)
+* Risk analysis & KPI design
 * Data storytelling for stakeholders
+
+---
+
+## ✅ Tips for Next Steps (optional)
+
+* Expose model predictions in the dashboard by exporting inference results into a table visual (e.g., predicted probability + risk band).
+* Add threshold tuning and business-cost analysis (cost of FN vs FP) to choose the optimal decision threshold.
+* Build a simple API to serve the model for real-time scoring (Flask/FastAPI + Docker).
+* Track model drift and set up periodic re-training.
 
 ---
 
 ## 🤝 Get in Touch
 
 * **GitHub:** [Saif907](https://github.com/Saif907)
-* **LinkedIn:** [Saif Shaikh](www.linkedin.com/in/saifshaikh-analytics251)
+* **LinkedIn:** [Saif Shaikh](https://www.linkedin.com/in/saifshaikh-analytics251)
 * **Email:** [saif81868@gmail.com](mailto:saif81868@gmail.com)
 
 ---
