@@ -73,10 +73,10 @@ loan-risk-analysis/
 ## 🚀 Getting Started
 
 1. **Clone repository**  
-   ```bash
+   bash
    git clone https://github.com/your-username/loan-risk-analysis-dashboard.git
    cd loan-risk-analysis
-````
+
 
 2. **Open report**
    Launch `Loan_Risk_Analysis.pbix` in Power BI Desktop.
@@ -96,9 +96,9 @@ loan-risk-analysis/
 
 ## 🤝 Get in Touch
 
-* **GitHub:** [your-username](https://github.com/Saif907)
-* **LinkedIn:** [Your Name](https://www.linkedin.com/in/saif-shaikh-527346251)
-* **Email:** [your.email@example.com](mailto:saif81868@gmail.com)
+* **GitHub:** [Saif907](https://github.com/Saif907)
+* **LinkedIn:** [Saif Shaikh](www.linkedin.com/in/saifshaikh-analytics251)
+* **Email:** [saif81868@gmail.com](mailto:saif81868@gmail.com)
 
 ---
 
